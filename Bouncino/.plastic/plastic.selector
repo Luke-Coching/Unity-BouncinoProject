@@ -1,0 +1,4 @@
+repository "Bouncino 2024-11-12_16-04-17/Bouncino@2475681154376@cloud"
+  path "/"
+    br "/main"
+    co "/main"
