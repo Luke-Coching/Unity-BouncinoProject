@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class dragAndShoot : MonoBehaviour
 {
     public float power = 10f;
     public Rigidbody2D body;
-    public Transform prop;
+    Transform prop;
    
     public Vector2 minPower;
     public Vector2 maxPower;
