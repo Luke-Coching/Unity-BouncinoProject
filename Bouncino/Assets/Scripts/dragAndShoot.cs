@@ -6,6 +6,7 @@ public class dragAndShoot : MonoBehaviour
     public float power = 10f;
     public Rigidbody2D body;
     Transform prop;
+    bool inAir;
    
     public Vector2 minPower;
     public Vector2 maxPower;

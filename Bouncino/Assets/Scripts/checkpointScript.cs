@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class checkpointScript : MonoBehaviour
 {
-    private respawnScript respawn;
-    private BoxCollider2D checkPointCollider2D;   
+    public Transform startPoint;
+    public Transform checkPoint;
+    private BoxCollider2D checkPointCollider;   
 
     void Awake(){
-        checkPointCollider2D = GetComponent<BoxCollider2D>();
-        respawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<respawnScript>();
+        checkPointCollider = GetComponent<BoxCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Player")){
-            respawn.respawnPoint = this.gameObject;
-            checkPointCollider2D.enabled = false;
+            startPoint.transform.position = checkPoint.transform.position;
+            checkPointCollider.enabled = false;
         }
     }
 }
