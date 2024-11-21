@@ -7,6 +7,7 @@ public class dragAndShoot : MonoBehaviour
     public Rigidbody2D body;
     Transform prop;
     private bool inAir;
+    public AudioSource soundFX;
    
     public Vector2 minPower;
     public Vector2 maxPower;
@@ -40,6 +41,7 @@ public class dragAndShoot : MonoBehaviour
 
             force = new Vector2(Mathf.Clamp(start.x - end.x, minPower.x, maxPower.x), Mathf.Clamp(start.y - end.y, minPower.y, maxPower.y));
             body.AddForce(force * power, ForceMode2D.Impulse);
+            soundFX.Play();
             inAir = true;
             dl.endLine();
         }
