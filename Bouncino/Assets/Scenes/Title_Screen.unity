@@ -543,7 +543,7 @@ Transform:
   m_GameObject: {fileID: 1099869761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 451, y: 207, z: -10}
+  m_LocalPosition: {x: 429, y: 207, z: -10}
   m_LocalScale: {x: 1066.6715, y: 10.860289, z: 10.860289}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -648,6 +648,7 @@ GameObject:
   - component: {fileID: 1834413230}
   - component: {fileID: 1834413229}
   - component: {fileID: 1834413228}
+  - component: {fileID: 1834413231}
   m_Layer: 5
   m_Name: LVLSelectButton
   m_TagString: Untagged
@@ -717,7 +718,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1834413229}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1834413231}
+        m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1834413229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +769,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834413226}
   m_CullTransparentMesh: 1
+--- !u!114 &1834413231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834413226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b2dffd3fd4a1c43b9cbbc4e68cf3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: Level_Select_Screen
 --- !u!1 &2127784701
 GameObject:
   m_ObjectHideFlags: 0
