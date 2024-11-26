@@ -121,6 +121,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -247,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bouncino Numbers 6-0_0: 4687105808429043795
+      Bouncino Numbers 6-0_1: -6111450453619142436
+      Bouncino Numbers 6-0_2: 4741939469569154659
+      Bouncino Numbers 6-0_3: 2914813564792689483
+      Bouncino Numbers 6-0_4: -8710561757479075951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
