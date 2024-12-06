@@ -2,6 +2,7 @@ using System.Drawing;
 using NUnit.Framework.Internal;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class enemyAI : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class enemyAI : MonoBehaviour
 
     void Awake(){
         enemyCollider = GetComponent<BoxCollider2D>();
+        count++;
     }
 
     void Start(){
@@ -35,17 +37,17 @@ public class enemyAI : MonoBehaviour
         //Attack Sequence
         count++;
 
-        if(count == 500){
+        if(count == 250){
             secondCount ++;
             count = 0;
         }
 
-        if(secondCount > 3){
+        if(secondCount > 2){
+            spikeAttack.SetInteger("AttackCount", secondCount);
             isAttacking = true;
-            spikeAttack.SetBool("Attack", isAttacking);
         } else {
+            spikeAttack.SetInteger("AttackCount", secondCount);
             isAttacking = false;
-            spikeAttack.SetBool("Attack", isAttacking);
         }
 
         if(secondCount == 7){
