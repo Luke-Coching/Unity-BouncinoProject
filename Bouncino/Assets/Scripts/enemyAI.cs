@@ -19,7 +19,6 @@ public class enemyAI : MonoBehaviour
     int count = 0;
     int secondCount = 0;
     public float speed;
-    bool isAttacking;
 
     void Awake(){
         enemyCollider = GetComponent<BoxCollider2D>();
@@ -30,7 +29,6 @@ public class enemyAI : MonoBehaviour
         spikeAttack = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentPos = PointB.transform;
-        isAttacking = false;
     }
 
     void Update(){
@@ -44,10 +42,8 @@ public class enemyAI : MonoBehaviour
 
         if(secondCount > 2){
             spikeAttack.SetInteger("AttackCount", secondCount);
-            isAttacking = true;
         } else {
             spikeAttack.SetInteger("AttackCount", secondCount);
-            isAttacking = false;
         }
 
         if(secondCount == 7){
@@ -73,10 +69,10 @@ public class enemyAI : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.CompareTag("Player") && !isAttacking){
+        if(other.gameObject.CompareTag("Player") && secondCount < 3){
             Destroy(enemy);
             enemyCollider.enabled = false;
-        } else if(other.gameObject.CompareTag("Player") && isAttacking) {
+        } else if(other.gameObject.CompareTag("Player") && secondCount >= 3) {
             player.transform.position = spawnPoint.transform.position;
             deathSound.Play();
         }
