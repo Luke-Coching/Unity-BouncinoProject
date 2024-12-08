@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Checkpoint
+  - Ground
+  - BackgroundMusic
+  - toTitleScreen
   layers:
   - Default
   - TransparentFX

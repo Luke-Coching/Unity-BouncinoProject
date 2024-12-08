@@ -9,7 +9,6 @@ public class dragAndShoot : MonoBehaviour
     Transform prop;
     private bool inAir;
     public AudioSource soundFX;
-   
     public Vector2 minPower;
     public Vector2 maxPower;
     DragLine dl;
