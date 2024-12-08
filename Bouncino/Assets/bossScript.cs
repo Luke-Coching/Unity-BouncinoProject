@@ -1,10 +1,7 @@
-using System.Drawing;
-using NUnit.Framework.Internal;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.WSA;
 
-public class enemyAI : MonoBehaviour
+public class bossScript : MonoBehaviour
 {
     public GameObject player;
     public GameObject enemy;
@@ -12,16 +9,19 @@ public class enemyAI : MonoBehaviour
     public AudioSource deathSound;
     public GameObject PointA;
     public GameObject PointB;
-    private BoxCollider2D enemyCollider;
+    public dragAndShoot launchMechanic;
+    public PolygonCollider2D enemyCollider;
+    public finalLevel levelComplete;
     private Rigidbody2D rb;
     private Transform currentPos;
     private Animator spikeAttack;
     int count = 0;
     int secondCount = 0;
+    int bossHealth = 5;
     public float speed;
 
     void Awake(){
-        enemyCollider = GetComponent<BoxCollider2D>();
+        enemyCollider = GetComponent<PolygonCollider2D>();
     }
 
     void Start(){
@@ -31,25 +31,6 @@ public class enemyAI : MonoBehaviour
     }
 
     void Update(){
-        //Attack Sequence
-        count++;
-
-        if(count == 250){
-            secondCount ++;
-            count = 0;
-        }
-
-        if(secondCount > 2){
-            spikeAttack.SetInteger("AttackCount", secondCount);
-        } else {
-            spikeAttack.SetInteger("AttackCount", secondCount);
-        }
-
-        if(secondCount == 7){
-            secondCount = 0;
-        }
-        //////////////////////
-
         //Movement Sequence
         Vector2 point = currentPos.transform.position - transform.position;
         if(currentPos == PointB.transform){
@@ -65,16 +46,44 @@ public class enemyAI : MonoBehaviour
         if(Vector2.Distance(transform.position, currentPos.position) < 0.5f && currentPos == PointA.transform){
             currentPos = PointB.transform;
         }
+
+        //Attack Sequence
+        count++;
+
+        if(count == 200){
+            secondCount ++;
+            count = 0;
+        }
+
+            spikeAttack.SetInteger("SpikeAttack", secondCount);
+
+        if(secondCount == 7){
+            secondCount = 0;
+        }
+        //////////////////////
+
     }
 
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Player") && secondCount < 3){
-            Destroy(enemy);
-            enemyCollider.enabled = false;
+            bossHealth -= 1;
+            launchMechanic.knockbackCount = launchMechanic.knockbackTotTime;
+
+            if(other.transform.position.x <= transform.position.x){
+                launchMechanic.hitRight = true;
+            } else if (other.transform.position.x > transform.position.x){
+                launchMechanic.hitRight = false;
+            }
+
+            if(bossHealth == 0){
+                Destroy(enemy);
+                enemyCollider.enabled = false;
+                levelComplete.bossDefeated = true;
+            }
         } else if(other.gameObject.CompareTag("Player") && secondCount >= 3) {
             player.transform.position = spawnPoint.transform.position;
             deathSound.Play();
         }
     }
-   
+
 }

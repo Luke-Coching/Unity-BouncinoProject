@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,11 +13,14 @@ public class dragAndShoot : MonoBehaviour
     public Vector2 minPower;
     public Vector2 maxPower;
     DragLine dl;
-
     Camera cam;
     Vector2 force;
     Vector3 start;
     Vector3 end;
+    public float knockback;
+    public float knockbackCount;
+    public float knockbackTotTime;
+    public bool hitRight;
 
     private void Start(){
         cam = Camera.main;
@@ -24,6 +28,7 @@ public class dragAndShoot : MonoBehaviour
     }
 
     private void Update(){
+        //Drag and Launch Mechanic
         if(Input.GetMouseButtonDown(0) && !inAir){
             start = cam.ScreenToWorldPoint(Input.mousePosition);
             start.z = 15;
@@ -44,6 +49,19 @@ public class dragAndShoot : MonoBehaviour
             soundFX.Play();
             inAir = true;
             dl.endLine();
+        }
+        ////////////////////////////////
+    }
+
+    void FixedUpdate(){
+         if(knockbackCount > 0){
+            if(hitRight == true){
+                body.linearVelocity = new Vector2(-knockback, knockback);
+            } else if(hitRight == false){
+                body.linearVelocity = new Vector2(knockback, knockback);
+            }
+
+            knockbackCount --;
         }
     }
 
